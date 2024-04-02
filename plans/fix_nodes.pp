@@ -43,7 +43,7 @@ plan myhealthcheck::fix_nodes(
 
       # Fix the noop issues
       if $response['issues']['noop'] {
-        $noop = run_task('puppet_health_check::fix_noop', $node, target_state => $target_noop_state, '_catch_errors' => true)
+        $noop = run_task('myhealthcheck::fix_noop', $node, target_state => $target_noop_state, '_catch_errors' => true)
         if $noop.ok {
           notice "${node},3,noop fixed"
         } else {
@@ -53,7 +53,7 @@ plan myhealthcheck::fix_nodes(
 
       # Fix the lockfile issues
       if $response['issues']['lock_file'] {
-        $lockfile = run_task('puppet_health_check::fix_lockfile', $node, '_catch_errors' => true)
+        $lockfile = run_task('myhealthcheck::fix_lockfile', $node, '_catch_errors' => true)
         if $lockfile.ok {
           notice "${node},3,lockfile fixed"
         } else {
@@ -63,7 +63,7 @@ plan myhealthcheck::fix_nodes(
 
       # Fix the runinterval issues
       if $response['issues']['runinterval'] {
-        $runinterval = run_task('puppet_health_check::fix_runinterval', $node, target_state => $target_runinterval, '_catch_errors' => true)
+        $runinterval = run_task('myhealthcheck::fix_runinterval', $node, target_state => $target_runinterval, '_catch_errors' => true)
         if $runinterval.ok {
           notice "${node},3,runinterval fixed"
         } else {
@@ -114,7 +114,7 @@ plan myhealthcheck::fix_nodes(
       }
 
       # Do the second run to validate that things have been fixed
-      $second_check = run_task('puppet_health_check::agent_health',
+      $second_check = run_task('myhealthcheck::agent_health',
                                   $node,
                                   target_noop_state      => $target_noop_state,
                                   target_service_enabled => $target_service_enabled,
