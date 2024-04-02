@@ -65,6 +65,7 @@ use_cached_catalog = config['use_cached_catalog']
 lock_file          = config['agent_disabled_lockfile']
 interval           = config['runinterval']
 statedir           = config['statedir']
+lastrunfile        = config['lastrunfile']
 compile_masters    = config['server_list'].split(',')
 puppetmaster       = config['server']
 ca_server          = config['ca_server']
@@ -88,7 +89,7 @@ if interval.to_i != target_runinterval
 end
 
 run_time = 0
-last_run = statedir + '/last_run_summary.yaml'
+last_run = lastrunfile
 if File.file?(last_run)
   last_run_contents = File.open(last_run, 'r').read
   last_run_contents.each_line do |line|

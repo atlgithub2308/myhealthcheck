@@ -1,5 +1,5 @@
 # @summary Plan to carry out automated fixes found by the health_check task
-plan puppet_health_check::fix_nodes(
+plan myhealthcheck::fix_nodes(
   TargetSpec $nodes,
   Boolean    $target_noop_state      = false,
   Integer    $target_runinterval     = 1800,
