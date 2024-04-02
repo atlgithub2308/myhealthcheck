@@ -15,7 +15,7 @@ plan myhealthcheck::fix_nodes(
   # 100 : Issues remaining at the end of the check
 
   without_default_logging() || {
-    $first_check = run_task('puppet_health_check::agent_health',
+    $first_check = run_task('myhealthcheck::agent_health',
                               $nodes,
                               target_noop_state      => $target_noop_state,
                               target_service_enabled => $target_service_enabled,
